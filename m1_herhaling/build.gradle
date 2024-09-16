@@ -1,9 +1,19 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'be.kdg.java2'
 version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+application {
+    mainClass = 'Demo1'
+}
 
 repositories {
     mavenCentral()

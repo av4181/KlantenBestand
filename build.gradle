@@ -1,19 +1,2 @@
-plugins {
-    id 'java'
-}
-
 group = 'be.kdg.java2'
-version = '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-}
-
-test {
-    useJUnitPlatform()
-}
+version = '1.0'
