@@ -44,6 +44,26 @@ public class Klanten {
         });
         return Collections.unmodifiableList(klantType);
     }
+    public List<Klant> sorteerOpBtw() {
+        List<Klant> klantBtw = new ArrayList<>(klanten);
+        klantBtw.sort(new Comparator<Klant>() {
+            @Override
+            public int compare(Klant o1, Klant o2) {
+                return Double.compare(o1.getBtw(), (o2.getBtw()));
+            }
+        });
+        return Collections.unmodifiableList(klantBtw);
+    }
+    public List<Klant> sorteerOpAanmaakDatum() {
+        List<Klant> aanmaakDatum = new ArrayList<>(klanten);
+        aanmaakDatum.sort(new Comparator<Klant>() {
+            @Override
+            public int compare(Klant o1, Klant o2) {
+                return o1.getAanmaakDatum().compareTo(o2.getAanmaakDatum());
+            }
+        });
+        return Collections.unmodifiableList(aanmaakDatum);
+    }
 
     public int getAantal() {
         return klanten.size();

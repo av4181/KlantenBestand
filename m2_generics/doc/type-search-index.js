@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"data","l":"Data"},{"p":"<Unnamed>","l":"Demo_2"},{"p":"generics","l":"FIFOQueue"},{"p":"model","l":"Klant"},{"p":"model","l":"KlantType"},{"p":"generics","l":"PriorityQueue"}];updateSearchResults();

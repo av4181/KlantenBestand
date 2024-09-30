@@ -22,7 +22,7 @@ public class Demo_1 {
 
         System.out.print("Dubbele klant toevoegen: ");
         System.out.println(klanten.voegToe(new Klant(010101L, "Jef", "Peeters", "jefpeeters@hotmail.com",
-                KlantType.PARTICULIER, 12.0, LocalDate.of(1994, 3, 11), Boolean.FALSE)) + "\n");
+                KlantType.PARTICULIER, 0.12, LocalDate.of(1994, 3, 11), Boolean.FALSE)) + "\n");
 
         System.out.println("Klant zoeken op type: ");
         System.out.println(klanten.zoek("Jef", "Peeters") + "\n");
@@ -45,6 +45,20 @@ public class Demo_1 {
             System.out.println(klant);
         }
         System.out.println("test");
+
+        data = klanten.sorteerOpBtw();
+        System.out.println("Klanten gesorteerd op btw:");
+        for (Klant klant : data) {
+            System.out.println(klant);
+        }
+        System.out.println();
+
+        data = klanten.sorteerOpAanmaakDatum();
+        System.out.println("Klanten gesorteerd op aanmaakdatum:");
+        for (Klant klant : data) {
+            System.out.println(klant);
+        }
+        System.out.println();
     }
 }
 

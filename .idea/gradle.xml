@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/m1_herhaling" />
+            <option value="$PROJECT_DIR$/m2_generics" />
           </set>
         </option>
       </GradleProjectSettings>
