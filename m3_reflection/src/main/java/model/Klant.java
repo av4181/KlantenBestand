@@ -5,12 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Klant implements Comparable<Klant>{
+public class Klant extends Persoon implements Comparable<Klant>{
 
     private Long id;
-    private String voornaam;
-    private String achternaam;
-    private String email;
     private KlantType type;
     // private List<Offerte> offertes;
     // private List<Bestelling> bestellingen;
@@ -25,10 +22,8 @@ public class Klant implements Comparable<Klant>{
     }
 
     public Klant(Long id, String voornaam, String achternaam, String email, KlantType type, Double btw, LocalDate aanmaakDatum, Boolean redflag) {
+        super(voornaam,achternaam,email);
         setId(id);
-        setVoornaam(voornaam);
-        setAchternaam(achternaam);
-        setEmail(email);
         setType(type);
         setBtw(btw);
         setAanmaakDatum(aanmaakDatum);
@@ -41,39 +36,6 @@ public class Klant implements Comparable<Klant>{
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getVoornaam() {
-        return voornaam;
-    }
-
-    public void setVoornaam(String voornaam) {
-        if (voornaam == null || voornaam.isEmpty()) {
-            throw new IllegalArgumentException("Voornaam is een verplicht veld");
-        }
-        this.voornaam = voornaam;
-    }
-
-    public String getAchternaam() {
-        return achternaam;
-    }
-
-    public void setAchternaam(String achternaam) {
-        if (achternaam == null || achternaam.isEmpty()) {
-            throw new IllegalArgumentException("Achternaam is een verplicht veld");
-        }
-        this.achternaam = achternaam;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        if (email == null || email.isEmpty()) {
-            throw new IllegalArgumentException("E-mailadres is een verplicht veld");
-        }
-        this.email = email;
     }
 
     public KlantType getType() {
@@ -140,8 +102,7 @@ public class Klant implements Comparable<Klant>{
     public String toString() {
         DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formatAanmaakDatum = aanmaakDatum.format(fm);
-        return String.format("%-15s %-10s %-12s %-10s %3.2f%%\taanmaakdatum: %-12s Redflag: %-25s", voornaam, achternaam, email,
-                type, btw, formatAanmaakDatum, redflag);
+        return String.format("%-10s %3.2f%%\taanmaakdatum: %-12s Redflag: %-25s", type, btw, formatAanmaakDatum, redflag);
     }
 
 }

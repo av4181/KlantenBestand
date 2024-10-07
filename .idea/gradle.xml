@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/m1_herhaling" />
             <option value="$PROJECT_DIR$/m2_generics" />
+            <option value="$PROJECT_DIR$/m3_reflection" />
           </set>
         </option>
       </GradleProjectSettings>
