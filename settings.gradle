@@ -2,4 +2,5 @@ rootProject.name = 'groeiproject'
 include 'm1_herhaling'
 include 'm2_generics'
 include 'm3_reflection'
+include 'm4_streams'
 
