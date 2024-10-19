@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/m2_generics" />
             <option value="$PROJECT_DIR$/m3_reflection" />
             <option value="$PROJECT_DIR$/m4_streams" />
+            <option value="$PROJECT_DIR$/m5_logging" />
           </set>
         </option>
       </GradleProjectSettings>

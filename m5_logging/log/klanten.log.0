@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-10-19T14:19:15.616349300Z</date>
+  <millis>1729347555616</millis>
+  <nanos>349300</nanos>
+  <sequence>2</sequence>
+  <logger>model.Klanten</logger>
+  <level>FINER</level>
+  <class>model.Klanten</class>
+  <method>voegToe</method>
+  <thread>1</thread>
+  <message>Klant Peter Janssens is toegevoegd aan de lijst</message>
+</record>
+<record>
+  <date>2024-10-19T14:19:15.642356200Z</date>
+  <millis>1729347555642</millis>
+  <nanos>356200</nanos>
+  <sequence>3</sequence>
+  <logger>model.Klanten</logger>
+  <level>FINER</level>
+  <class>model.Klanten</class>
+  <method>voegToe</method>
+  <thread>1</thread>
+  <message>Klant Unknown Unknown is toegevoegd aan de lijst</message>
+</record>
+<record>
+  <date>2024-10-19T14:19:15.642356200Z</date>
+  <millis>1729347555642</millis>
+  <nanos>356200</nanos>
+  <sequence>4</sequence>
+  <logger>model.Klanten</logger>
+  <level>FINER</level>
+  <class>model.Klanten</class>
+  <method>verwijder</method>
+  <thread>1</thread>
+  <message>Klant Peter Janssens is verwijderd uit de lijst</message>
+</record>
+</log>
