@@ -2,6 +2,7 @@ package persist;
 
 import model.Klant;
 import model.KlantType;
+import model.Klanten;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,19 +13,20 @@ import java.util.logging.Logger;
 public class KlantDbDao implements KlantDao {
 
     private static final Logger logger = Logger.getLogger("be.kdg.model.KlantDbDao");
-
-
     private Connection connection = null;
+    private Klanten klanten;
+
+    // Opdracht 3.3 & 3.4
 
     public KlantDbDao(String path) {
+        klanten = new Klanten();
         try {
-            connection = DriverManager.getConnection("jdbc:hsqldb:file:" + path, "sa", "");
+            this.connection = DriverManager.getConnection(path);
+            createTable();
             System.out.println("SQL connection successful");
         } catch (SQLException ex) {
             logger.log(Level.SEVERE, "Cant make connection with DB" + ex.getMessage());
         }
-
-        createTable();
     }
 
     public void close() {
@@ -42,10 +44,9 @@ public class KlantDbDao implements KlantDao {
     }
 
     private void createTable() {
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute("DROP TABLE IF EXISTS klantentabel");
-            statement.execute("CREATE TABLE klantentabel" +
+        try (Statement statement = connection.createStatement()){
+            statement.executeUpdate("DROP TABLE IF EXISTS klantentabel");
+            String create = "CREATE TABLE klantentabel" +
                     "(id INTEGER IDENTITY," +
                     "voornaam VARCHAR(30)," +
                     "achternaam VARCHAR(30)," +
@@ -53,18 +54,18 @@ public class KlantDbDao implements KlantDao {
                     "type VARCHAR(30)," +
                     "btw  DOUBLE," +
                     "aanmaakdatum DATE," +
-                    "redflag BOOLEAN)"
-            );
+                    "redflag BOOLEAN)";
+            statement.executeUpdate(create);
             System.out.println("DB created");
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error creating table: " + e.getMessage());
         }
     }
-
+    // Opdracht 3.5 CRUD - Create
     @Override
     public boolean insert(Klant klant) {
         if (klant.getId() >= 0) return false; //klant heeft al PK dus bestaat al in database
-        try {
+        try  {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO klantentabel VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, klant.getVoornaam());
@@ -85,26 +86,22 @@ public class KlantDbDao implements KlantDao {
         }
     }
 
+    // Opdracht 3.5 CRUD - Delete
     @Override
-    public boolean delete(String achternaam) {
-        try {
-            Statement statement = connection.createStatement();
-            String query;
-            if (achternaam.equals("*")) {
-                query = "DELETE FROM klantentabel";
-            } else {
-                query = "DELETE FROM klantentabel where achternaam = '" + achternaam + "'";
-            }
-
-            int rowsaffected = statement.executeUpdate(query);
-            return rowsaffected != 0;
+    public boolean verwijder(String achternaam, String voornaam) {
+        String sql = "DELETE FROM klantentabel WHERE achternaam = ? AND voornaam = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, achternaam);
+            stmt.setString(2, voornaam);
+            stmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, e.getMessage());
+            logger.log(Level.SEVERE, "Fout bij het verwijderen van klant: " + e.getMessage(), e);
             return false;
         }
-
     }
 
+    // Opdracht 3.5 CRUD - Update
     @Override
     public boolean update(Klant klant) {
         try {
@@ -130,6 +127,7 @@ public class KlantDbDao implements KlantDao {
         return false;
     }
 
+    // Opdracht 3.5 CRUD - Read
     @Override
     public Klant retrieve(String achternaam) {
         Klant toRetrieveKlant = null;
@@ -155,32 +153,46 @@ public class KlantDbDao implements KlantDao {
 
     }
 
-    @Override
+    //Opdarcht 3.5 e)
     public List<Klant> sortedOn(String query) {
-        List<Klant> sortedList = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM klantentabel ORDER BY " + query);
-            while (rs.next()) {
-                sortedList.add(
-                        new Klant(
-                                rs.getInt("id"),
-                                rs.getString("voornaam"),
-                                rs.getString("achternaam"),
-                                rs.getString("email"),
-                                KlantType.valueOf(rs.getString("type")),
-                                rs.getDouble("btw"),
-                                rs.getDate("aanmaakdatum").toLocalDate(),
-                                rs.getBoolean("redflag")
-                        )
-                );
-            }
-        } catch (SQLException e) {
-            System.err.println("Error retrieving sql sorted: " + e);
-        }
-//        sortedList.forEach(System.out::println);
-        return sortedList;
+        return execQuery("SELECT * FROM klantentabel ORDER BY " + query + " ASC");
     }
 
+    private List<Klant> execQuery(String query) {
+        List<Klant> klanten = new ArrayList<>();
+        try (Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(query)) {
+            while (rs.next())
+            {
+                klanten.add(new Klant(
+                        rs.getInt("id"),
+                        rs.getString("voornaam"),
+                        rs.getString("achternaam"),
+                        rs.getString("email"),
+                        KlantType.valueOf(rs.getString("type")),
+                        rs.getDouble("btw"),
+                        rs.getDate("aanmaakdatum").toLocalDate(),
+                        rs.getBoolean("redflag")
+                ));
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Fout bij het ophalen van klanten: " + e.getMessage(), e);
+        }
+        return klanten;
+    }
+    @Override
+    public List<Klant> sortedOnAchternaam() {
+        return sortedOn("SELECT * FROM klantentabel ORDER BY achternaam ASC");
+    }
+
+    @Override
+    public List<Klant> sortedOnAanmaakDatum() {
+        return sortedOn("SELECT * FROM klantentabel ORDER BY aanmaakdatum ASC");
+    }
+
+    @Override
+    public List<Klant> sortedOnBtw() {
+        return sortedOn("SELECT * FROM klantentabel ORDER BY btw ASC");
+    }
 
 }

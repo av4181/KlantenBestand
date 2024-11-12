@@ -15,7 +15,7 @@ class KlantSerializerTest {
 
     @BeforeEach
     public void init(){
-        klantSerializer = new KlantSerializer("db/klanten.ser");
+        klantSerializer = new KlantSerializer("db/klantentabel.ser");
         klanten = new Klanten();
         Data.getData().forEach(k -> klanten.voegToe(k));
 
