@@ -1,7 +1,6 @@
 package parsing;
 
 import data.Data;
-import model.Klant;
 import model.Klanten;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,8 +48,8 @@ public class ParserTest {
     @Test
     void testGson(){
         assertDoesNotThrow(() -> KlantenGsonParser.writeJson(klanten, pathGson), "Issue writing XML using json");
-        Klanten footballStadiumsFromGson =  assertDoesNotThrow(() ->KlantenGsonParser.readJson(pathGson), "Issue");
+        Klanten klantenFromGson =  assertDoesNotThrow(() ->KlantenGsonParser.readJson(pathGson), "Issue");
 
-        assertEquals( klanten.getKlantenLijst(), footballStadiumsFromGson.getKlantenLijst(), "Not the same");
+        assertEquals( klanten.getKlantenLijst(), klantenFromGson.getKlantenLijst(), "Not the same");
     }
 }
