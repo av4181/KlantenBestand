@@ -1,0 +1,104 @@
+{
+  "klantenLijst": [
+    {
+      "id": 42805,
+      "voornaam": "Peter",
+      "achternaam": "Janssens",
+      "email": "peterjanssens@yahoo.com",
+      "type": "PARTICULIER",
+      "btw": 0.12,
+      "aanmaakDatum": "1994-03-11",
+      "redflag": false
+    },
+    {
+      "id": 1234567,
+      "voornaam": "Jan",
+      "achternaam": "de Vries",
+      "email": "jandevries@gmail.com",
+      "type": "PARTICULIER",
+      "btw": 0.06,
+      "aanmaakDatum": "1985-08-22",
+      "redflag": true
+    },
+    {
+      "id": 2345678,
+      "voornaam": "Maria",
+      "achternaam": "Smit",
+      "email": "mariasmit@hotmail.com",
+      "type": "LEVERANCIER",
+      "btw": 0.21,
+      "aanmaakDatum": "1978-01-15",
+      "redflag": false
+    },
+    {
+      "id": 3456789,
+      "voornaam": "Emma",
+      "achternaam": "van Dijk",
+      "email": "emmavandijk@outlook.com",
+      "type": "PARTICULIER",
+      "btw": 0.21,
+      "aanmaakDatum": "1990-06-30",
+      "redflag": true
+    },
+    {
+      "id": 4567890,
+      "voornaam": "Mohammed",
+      "achternaam": "El Idrissi",
+      "email": "mohammed.el.idrissi@gmail.com",
+      "type": "PARTICULIER",
+      "btw": 0.0,
+      "aanmaakDatum": "1982-11-05",
+      "redflag": false
+    },
+    {
+      "id": 5678901,
+      "voornaam": "Sophie",
+      "achternaam": "de Jong",
+      "email": "sophiedejong@yahoo.com",
+      "type": "PARTICULIER",
+      "btw": 0.12,
+      "aanmaakDatum": "2001-04-12",
+      "redflag": true
+    },
+    {
+      "id": 6789012,
+      "voornaam": "David",
+      "achternaam": "Cohen",
+      "email": "davidcohen@hotmail.com",
+      "type": "LEVERANCIER",
+      "btw": 0.06,
+      "aanmaakDatum": "1965-09-28",
+      "redflag": false
+    },
+    {
+      "id": 7890123,
+      "voornaam": "Anna",
+      "achternaam": "Peters",
+      "email": "annapeters@gmail.com",
+      "type": "PARTICULIER",
+      "btw": 0.21,
+      "aanmaakDatum": "1998-07-03",
+      "redflag": true
+    },
+    {
+      "id": 8901234,
+      "voornaam": "Lisa",
+      "achternaam": "de Wit",
+      "email": "lisa.de.wit@outlook.com",
+      "type": "LEVERANCIER",
+      "btw": 0.0,
+      "aanmaakDatum": "1970-02-19",
+      "redflag": false
+    },
+    {
+      "id": 9012345,
+      "voornaam": "Ahmed",
+      "achternaam": "Yilmaz",
+      "email": "ahmed.yilmaz@yahoo.com",
+      "type": "LEVERANCIER",
+      "btw": 0.12,
+      "aanmaakDatum": "1995-12-25",
+      "redflag": true
+    }
+  ]
+}

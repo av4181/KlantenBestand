@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<klanten>
+    <klant klantType="PARTICULIER">
+        <id>42805</id>
+        <voornaam>Peter</voornaam>
+        <achternaam>Janssens</achternaam>
+        <email>peterjanssens@yahoo.com</email>
+        <btw>0.12</btw>
+        <aanmaakDatum>1994-03-11</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>1234567</id>
+        <voornaam>Jan</voornaam>
+        <achternaam>de Vries</achternaam>
+        <email>jandevries@gmail.com</email>
+        <btw>0.06</btw>
+        <aanmaakDatum>1985-08-22</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="LEVERANCIER">
+        <id>2345678</id>
+        <voornaam>Maria</voornaam>
+        <achternaam>Smit</achternaam>
+        <email>mariasmit@hotmail.com</email>
+        <btw>0.21</btw>
+        <aanmaakDatum>1978-01-15</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>3456789</id>
+        <voornaam>Emma</voornaam>
+        <achternaam>van Dijk</achternaam>
+        <email>emmavandijk@outlook.com</email>
+        <btw>0.21</btw>
+        <aanmaakDatum>1990-06-30</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>4567890</id>
+        <voornaam>Mohammed</voornaam>
+        <achternaam>El Idrissi</achternaam>
+        <email>mohammed.el.idrissi@gmail.com</email>
+        <btw>0.0</btw>
+        <aanmaakDatum>1982-11-05</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>5678901</id>
+        <voornaam>Sophie</voornaam>
+        <achternaam>de Jong</achternaam>
+        <email>sophiedejong@yahoo.com</email>
+        <btw>0.12</btw>
+        <aanmaakDatum>2001-04-12</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="LEVERANCIER">
+        <id>6789012</id>
+        <voornaam>David</voornaam>
+        <achternaam>Cohen</achternaam>
+        <email>davidcohen@hotmail.com</email>
+        <btw>0.06</btw>
+        <aanmaakDatum>1965-09-28</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>7890123</id>
+        <voornaam>Anna</voornaam>
+        <achternaam>Peters</achternaam>
+        <email>annapeters@gmail.com</email>
+        <btw>0.21</btw>
+        <aanmaakDatum>1998-07-03</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="LEVERANCIER">
+        <id>8901234</id>
+        <voornaam>Lisa</voornaam>
+        <achternaam>de Wit</achternaam>
+        <email>lisa.de.wit@outlook.com</email>
+        <btw>0.0</btw>
+        <aanmaakDatum>1970-02-19</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="LEVERANCIER">
+        <id>9012345</id>
+        <voornaam>Ahmed</voornaam>
+        <achternaam>Yilmaz</achternaam>
+        <email>ahmed.yilmaz@yahoo.com</email>
+        <btw>0.12</btw>
+        <aanmaakDatum>1995-12-25</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>42805</id>
+        <voornaam>Peter</voornaam>
+        <achternaam>Janssens</achternaam>
+        <email>peterjanssens@yahoo.com</email>
+        <btw>0.12</btw>
+        <aanmaakDatum>1994-03-11</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>1234567</id>
+        <voornaam>Jan</voornaam>
+        <achternaam>de Vries</achternaam>
+        <email>jandevries@gmail.com</email>
+        <btw>0.06</btw>
+        <aanmaakDatum>1985-08-22</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="LEVERANCIER">
+        <id>2345678</id>
+        <voornaam>Maria</voornaam>
+        <achternaam>Smit</achternaam>
+        <email>mariasmit@hotmail.com</email>
+        <btw>0.21</btw>
+        <aanmaakDatum>1978-01-15</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>3456789</id>
+        <voornaam>Emma</voornaam>
+        <achternaam>van Dijk</achternaam>
+        <email>emmavandijk@outlook.com</email>
+        <btw>0.21</btw>
+        <aanmaakDatum>1990-06-30</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>4567890</id>
+        <voornaam>Mohammed</voornaam>
+        <achternaam>El Idrissi</achternaam>
+        <email>mohammed.el.idrissi@gmail.com</email>
+        <btw>0.0</btw>
+        <aanmaakDatum>1982-11-05</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>5678901</id>
+        <voornaam>Sophie</voornaam>
+        <achternaam>de Jong</achternaam>
+        <email>sophiedejong@yahoo.com</email>
+        <btw>0.12</btw>
+        <aanmaakDatum>2001-04-12</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="LEVERANCIER">
+        <id>6789012</id>
+        <voornaam>David</voornaam>
+        <achternaam>Cohen</achternaam>
+        <email>davidcohen@hotmail.com</email>
+        <btw>0.06</btw>
+        <aanmaakDatum>1965-09-28</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="PARTICULIER">
+        <id>7890123</id>
+        <voornaam>Anna</voornaam>
+        <achternaam>Peters</achternaam>
+        <email>annapeters@gmail.com</email>
+        <btw>0.21</btw>
+        <aanmaakDatum>1998-07-03</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+    <klant klantType="LEVERANCIER">
+        <id>8901234</id>
+        <voornaam>Lisa</voornaam>
+        <achternaam>de Wit</achternaam>
+        <email>lisa.de.wit@outlook.com</email>
+        <btw>0.0</btw>
+        <aanmaakDatum>1970-02-19</aanmaakDatum>
+        <redflag>false</redflag>
+    </klant>
+    <klant klantType="LEVERANCIER">
+        <id>9012345</id>
+        <voornaam>Ahmed</voornaam>
+        <achternaam>Yilmaz</achternaam>
+        <email>ahmed.yilmaz@yahoo.com</email>
+        <btw>0.12</btw>
+        <aanmaakDatum>1995-12-25</aanmaakDatum>
+        <redflag>true</redflag>
+    </klant>
+</klanten>

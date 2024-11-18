@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'be.kdg.java2'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'com.sun.xml.bind:jaxb-impl:4.0.5'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
+    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.2'
+    implementation fileTree(dir: 'lib', include: ['*.jar'])
+}
+test {
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+    }
+    ignoreFailures=true
+}
+

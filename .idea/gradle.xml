@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/m4_streams" />
             <option value="$PROJECT_DIR$/m5_logging" />
             <option value="$PROJECT_DIR$/m6_persistence" />
+            <option value="$PROJECT_DIR$/m7_xml_json" />
           </set>
         </option>
       </GradleProjectSettings>
