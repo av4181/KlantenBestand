@@ -6,4 +6,5 @@ include 'm4_streams'
 include 'm5_logging'
 include 'm6_persistence'
 include 'm7_xml_json'
+include 'm8_datastructuren'
 
