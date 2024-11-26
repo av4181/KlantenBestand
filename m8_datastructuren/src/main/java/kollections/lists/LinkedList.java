@@ -1,6 +1,6 @@
-package kollections;
+package kollections.lists;
 
-import model.Klant;
+import kollections.Kollections;
 
 public class LinkedList<E> implements List<E> {
     static class Node<V> {
@@ -60,6 +60,22 @@ public class LinkedList<E> implements List<E> {
         return size;
     }
 
+    // Opdracht 5.4: Pas nu de List-implementaties ArrayList en LinkedList aan, werk alle ontbrekende methoden correct uit.
+    @Override
+    public boolean remove(E element) {
+        int index = Kollections.lineairSearch(this, element);
+        if (index != -1){
+            remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean contains(E element) {
+        return indexOf(element) != 1;
+    }
+
     @Override
     public E remove(int index) {
         if (index >= this.size || index < 0) {
@@ -93,5 +109,11 @@ public class LinkedList<E> implements List<E> {
             node = node.next;
         }
         return node.value;
+    }
+
+    // Opdracht 5.4: Maak in de indexOf-methode gebruik van Kollections linearSearch
+    @Override
+    public int indexOf(E element) {
+        return Kollections.lineairSearch(this, element);
     }
 }

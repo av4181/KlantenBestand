@@ -1,6 +1,7 @@
-package kollections;
+package kollections.lists;
 
-import model.Klant;
+import kollections.Kollections;
+
 import java.util.Arrays;
 
 public class ArrayList<E> implements List<E> {
@@ -16,6 +17,9 @@ public class ArrayList<E> implements List<E> {
     private void expand() {
         //implement this method
 //        Object[] newElements = new Object[elements.length*2];
+//        for (int i = 0; i < elements.length; i++) {
+//            newElements[i] = elements[i];
+//        }
 //        System.arraycopy(elements, 0, newElements, 0, elements.length);
 //        elements = newElements;
 
@@ -29,11 +33,13 @@ public class ArrayList<E> implements List<E> {
         if (index > this.size || index < 0) {
             throw new IndexOutOfBoundsException("index: " + index + ", size: " + size);
         }
-        //implement this method
         if (size == elements.length) {
             expand();
         }
-        System.arraycopy(elements, index, elements, index + 1, size - index);
+//        for (int i = size; i > index; i--) {
+//            elements[i] = elements[i - 1];
+//        }
+        if (size - index >= 0) System.arraycopy(elements, index, elements, index + 1, size - index);
         elements[index] = element;
         size++;
     }
@@ -41,6 +47,22 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void add(E element) {
         add(size, element);
+    }
+
+    // Opdracht 5.4: Pas nu de List-implementaties ArrayList en LinkedList aan, werk alle ontbrekende methoden correct uit.
+    @Override
+    public boolean remove(E element) {
+        int index = Kollections.lineairSearch(this, element);
+        if (index != -1){
+            remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean contains(E element) {
+        return indexOf(element) != 1;
     }
 
     @Override
@@ -63,11 +85,18 @@ public class ArrayList<E> implements List<E> {
             throw new IndexOutOfBoundsException("index: " + index + ", size: " + size);
         }
         E oldValue = (E) elements[index];
-        for (int i = index; i < size - 1; i++) {
-            elements[i] = elements[i + 1];
-        }
+//        for (int i = index; i < size - 1; i++) {
+//            elements[i] = elements[i + 1];
+//        }
+        if (size - 1 - index >= 0) System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
         size--;
         return oldValue;
+    }
+
+    // Opdracht 5.4: Maak in de indexOf-methode gebruik van Kollections linearSearch
+    @Override
+    public int indexOf(E element) {
+        return Kollections.lineairSearch(this, element);
     }
 
     @Override

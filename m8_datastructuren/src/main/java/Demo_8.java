@@ -1,15 +1,11 @@
-import kollections.ArrayList;
 import kollections.Kollections;
-import kollections.List;
+import kollections.lists.List;
 import model.Klant;
 import model.KlantFactory;
 import model.KlantType;
 
 import java.time.LocalDate;
-import java.util.Comparator;
 
-import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Demo_8 {
@@ -68,7 +64,7 @@ public class Demo_8 {
 
 
         //Create a random list for  testing
-        kollections.List<Klant> randomCustomList = PerformanceTester.randomList(30);
+        List<Klant> randomCustomList = PerformanceTester.randomList(30);
 
         System.out.println("all");
         for (int i = 0; i < randomCustomList.size(); i++) {

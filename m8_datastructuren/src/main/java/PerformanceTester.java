@@ -1,10 +1,9 @@
 import kollections.Kollections;
-import kollections.LinkedList;
-import kollections.ArrayList;
-import kollections.List;
+import kollections.lists.LinkedList;
+import kollections.lists.ArrayList;
+import kollections.lists.List;
 import model.Klant;
 import model.KlantFactory;
-import model.KlantType;
 
 public class PerformanceTester {
 
