@@ -3,8 +3,11 @@ package kollections;
 
 public class Kollections {
 
+    private Kollections() {
+    }
+
     public static <T extends Comparable<T>> void selectionSort(List<T> list) {
-        //use the selectionSort from the introduction module and make it generic!
+        //Opdracht 4.2: use the selectionSort from the introduction module and make it generic!
         for (int i = 0; i < list.size() - 1; i++) {
             int indexSmallest = i;
             for (int j = i + 1; j < list.size(); j++) {
@@ -18,6 +21,17 @@ public class Kollections {
         }
     }
 
+    // Opdracht 4.4: Ga naar de klasse kollections.  Kollections en implementeer daar de methode mergeSort.
+    // Deze methode is overloaded. De tweede versie is bedoeld om recursief gebruikt te worden.
+    // De merge methode is al gegeven; bestudeer de code!
+    public static <T extends Comparable<T>> void mergeSort(List<T> list) {
+        //splits in 2 delen, sorteer elk deel en merge dan
+
+        mergeSort(list, 0, list.size() - 1);
+    }
+
+    //from inclusive, to inclusive
+    // Opdracht 4.4: complete the algorithm! Use recursive calls and the merge method...
     private static <T extends Comparable<T>> void mergeSort(List<T> list, int from, int to) {
         //splits in 2 delen, sorteer elk deel en merge dan
         if (from > to) throw new IllegalArgumentException("from should be before to");

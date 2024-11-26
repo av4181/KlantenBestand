@@ -1,10 +1,10 @@
 package kollections;
 
-public interface List<T> {
-    void add(int index, T element);
-    void add(T element);
-    void set(int index, T element);
+public interface List<E> {
+    void add(int index, E element);
+    void add(E element);
+    void set(int index, E element);
     int size();
-    T remove(int index);
-    T get(int index);
+    E remove(int index);
+    E get(int index);
 }

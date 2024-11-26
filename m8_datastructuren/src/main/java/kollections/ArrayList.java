@@ -1,6 +1,7 @@
 package kollections;
 
 import model.Klant;
+import java.util.Arrays;
 
 public class ArrayList<E> implements List<E> {
     private static final int INITIAL_CAPACITY = 10;
@@ -14,9 +15,13 @@ public class ArrayList<E> implements List<E> {
 
     private void expand() {
         //implement this method
-        Object[] newElements = new Object[elements.length*2];
-        System.arraycopy(elements, 0, newElements, 0, elements.length);
-        elements = newElements;
+//        Object[] newElements = new Object[elements.length*2];
+//        System.arraycopy(elements, 0, newElements, 0, elements.length);
+//        elements = newElements;
+
+        //alternative
+        // Double the size of the array
+        elements = Arrays.copyOf(elements, 2*elements.length);
     }
 
     @Override

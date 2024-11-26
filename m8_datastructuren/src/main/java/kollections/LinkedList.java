@@ -15,7 +15,7 @@ public class LinkedList<E> implements List<E> {
     private Node<E> root;
     private int size;
 
-    public LinkedList(List<Klant> klantenLijst) {
+    public LinkedList() {
     }
 
     @Override

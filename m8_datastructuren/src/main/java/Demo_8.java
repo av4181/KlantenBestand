@@ -1,12 +1,13 @@
 import kollections.ArrayList;
 import kollections.Kollections;
+import kollections.List;
 import model.Klant;
 import model.KlantFactory;
 import model.KlantType;
 
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.List;
+
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -15,19 +16,21 @@ public class Demo_8 {
 
     public static void main(String[] args) {
 
-        Klant emptyKlant = KlantFactory.newEmptyKlant();
-        System.out.println("Empty klant: " + emptyKlant);
+        System.out.println("Groeiproject week 8:");
+        System.out.println("Empty klant:");
+        System.out.println(KlantFactory.newEmptyKlant() + "\n");
 
-        Klant filledKlant = KlantFactory.newFilledKlant(1, "Jan", "Janssens", "jan.janssens@example.com", KlantType.PARTICULIER, 0.21, LocalDate.of(1990, 5, 10), false);
-        System.out.println("Filled klant: " + filledKlant);
+        System.out.println("Filled klant:");
+        System.out.println(KlantFactory.newFilledKlant(1, "Jan", "Janssens",
+                "jan.janssens@example.com", KlantType.PARTICULIER, 0.21,
+                LocalDate.of(1990, 5, 10), false));
+        System.out.println();
 
-        List<Klant> randomKlanten = Stream.generate(KlantFactory::newRandomKlant)
+        System.out.println("30 randomly generated stadium sorted by name:");
+        Stream.generate(KlantFactory::newRandomKlant)
                 .limit(30)
-                .sorted(Comparator.comparing(Klant::getAchternaam))
-                .collect(Collectors.toList());
-        System.out.println("\n30 random klanten gesorteerd op achternaam:");
-        randomKlanten.forEach(System.out::println);
-    }
+                .forEach(System.out::println);
+
 
 //        PerformanceTester.compareArrayListAndLinkedList(100000);
 //        List<Klant> myArrayList = new ArrayList<>();
@@ -56,6 +59,123 @@ public class Demo_8 {
 //        System.out.println("==========MERGESORT====================");
 //        PerformanceTester.testMergeSort();
 //
+
+        //
+//
+        System.out.println();
+        System.out.println("3.2 Instantie eigen arraylist");
+        System.out.println();
+
+
+        //Create a random list for  testing
+        kollections.List<Klant> randomCustomList = PerformanceTester.randomList(30);
+
+        System.out.println("all");
+        for (int i = 0; i < randomCustomList.size(); i++) {
+            System.out.println(randomCustomList.get(i));
+        }
+
+        randomCustomList.add(0, KlantFactory.newEmptyKlant());
+
+        System.out.println("It still works after we do an add:");
+        System.out.println(randomCustomList.get(0));
+        for (int i = 0; i < randomCustomList.size(); i++) {
+            System.out.println(randomCustomList.get(i));
+        }
+
+        System.out.println();
+        System.out.println("3.6 compary performance of array list vs linkedlist using get and add methods");
+
+        PerformanceTester.compareArrayListAndLinkedList(200000);
+//
+//        3.6 Vergelijk performantie array list vs linkedlist door gebruik te maken van get en add methods
+//        Adding 200000 to ArrayList: 1927 ms
+//        Adding 200000 to LinkedList: 227 ms
+//        Getting 200000 from ArrayList: 0 ms
+//        Getting 200000 from LinkedList: 16 ms
+
+        System.out.println();
+        System.out.println("4.3 Test selectionSort algo vanuit de main door een List van 30 random basisobjecten " +
+                "te sorteren en af te drukken.");
+
+        Kollections.selectionSort(randomCustomList);
+        for (int i = 0; i < randomCustomList.size(); i++) {
+            System.out.println(randomCustomList.get(i));
+        }
+
+
+        System.out.println();
+        System.out.println("4.5 Test MergeSort algo vanuit de main door een List van 30 random basisobjecten ");
+
+        //Create a random list for  testing
+        List<Klant> randomCustomListForMergeSort = PerformanceTester.randomList(5);
+
+        Kollections.mergeSort(randomCustomListForMergeSort);
+        for (int i = 0; i < randomCustomListForMergeSort.size(); i++) {
+            System.out.println(randomCustomListForMergeSort.get(i));
+        }
+// 4.7 Test testSelectionsort en testMergeSort algos
+
+        PerformanceTester.testSelectionSort();
+        PerformanceTester.testMergeSort();
+
+// 4.9 De Kollections::quickSort methode heb je cadeau gekregen.
+//        Test vanuit de main door een List van 30 random basisobjecten te sorteren en af te drukken
+
+        //Create a random list for  testing
+        List<Klant> randomCustomListForQuickSort = PerformanceTester.randomList(30);
+
+
+        System.out.println();
+        System.out.println("4.9 Quick sort");
+        System.out.println("Quick sort : before sort");
+        for (int i = 0; i < randomCustomListForQuickSort.size(); i++) {
+            System.out.println(randomCustomListForQuickSort.get(i));
+        }
+
+        Kollections.quickSort(randomCustomListForQuickSort);
+
+        System.out.println();
+        System.out.println();
+        System.out.println("Quick sort : after sort");
+        //System.out.println(randomCustomList.get(0));
+        for (int i = 0; i < randomCustomListForQuickSort.size(); i++) {
+            System.out.println(randomCustomListForQuickSort.get(i));
+        }
+
+        System.out.println();
+        System.out.println("4.11 Testen van lineaire vs binary linear search");
+
+        //Nieuwe lege klant toevoegen
+        Klant klantTeZoeken = KlantFactory.newEmptyKlant();
+        Klant nonExistent = KlantFactory.newEmptyKlant();
+        klantTeZoeken.setAchternaam("zzzzz");
+        nonExistent.setAchternaam("nonexistent");
+        randomCustomListForQuickSort.add(klantTeZoeken);
+
+        //QuickSort lijst
+        Kollections.quickSort(randomCustomListForQuickSort);
+
+        //Print
+        System.out.println();
+        System.out.println("De toegevoegde klant begint met de letters A en werd toegevoegd en gesorteerd");
+        //System.out.println(randomCustomList.get(0));
+        for (int i = 0; i < randomCustomListForQuickSort.size(); i++) {
+            System.out.println(randomCustomListForQuickSort.get(i));
+        }
+
+        System.out.println("Index van klant met naam " + klantTeZoeken.getAchternaam() + ": " + Kollections.lineairSearch(randomCustomListForQuickSort, klantTeZoeken));
+        System.out.println("Index van klant met naam " + klantTeZoeken.getAchternaam() + ": " + Kollections.binarySearch(randomCustomListForQuickSort, klantTeZoeken));
+        System.out.println("Index van klant met naam " + klantTeZoeken.getAchternaam() + ": " + Kollections.lineairSearch(randomCustomListForQuickSort, nonExistent));
+        System.out.println("Index van klant met naam " + klantTeZoeken.getAchternaam() + ": " + Kollections.binarySearch(randomCustomListForQuickSort, nonExistent));
+
+        //5.8  In de klasse PerformanceTester schrijf je een nieuwe methode compareListMapToHasMap:
+
+        //PerformanceTester.compareListMapToHasMap(1000);
+//        PerformanceTester.compareArraySetToTreeSet(1000);
+
+//        PerformanceTester.testMapImplementation();
+    }
 }
 
 

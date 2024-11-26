@@ -7,16 +7,17 @@ import java.util.Objects;
 
 public class Klant implements Comparable<Klant>{
 
-    private int id;
-    private String voornaam;
-    private String achternaam;
-    private String email;
-    private KlantType type;
+    //Opdracht 2.1 ... Maak alles package private.  Attributen basisklasse zijn niet meer bereikbaar
+    private int Id;
+    private String Voornaam;
+    private String Achternaam;
+    private String Email;
+    private KlantType Type;
     // private List<Offerte> offertes;
     // private List<Bestelling> bestellingen;
-    private Double btw;
-    private LocalDate aanmaakDatum;
-    private Boolean redflag;
+    private Double Btw;
+    private LocalDate AanmaakDatum;
+    private Boolean Redflag;
 
     private static final String UNKNOWN = "Unknown";
 
@@ -27,110 +28,110 @@ public class Klant implements Comparable<Klant>{
 
     // Opdracht 2.1
     Klant(int id, String voornaam, String achternaam, String email, KlantType type, Double btw, LocalDate aanmaakDatum, Boolean redflag) {
-        setId(id);
-        setVoornaam(voornaam);
-        setAchternaam(achternaam);
-        setEmail(email);
-        setType(type);
-        setBtw(btw);
-        setAanmaakDatum(aanmaakDatum);
-        setRedflag(redflag);
+        Id = id;
+        Voornaam=voornaam;
+        Achternaam=achternaam;
+        Email=email;
+        Type=type;
+        Btw=btw;
+        AanmaakDatum=aanmaakDatum;
+        Redflag=redflag;
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.Id = id;
+//    }
 
     public String getVoornaam() {
-        return voornaam;
+        return Voornaam;
     }
 
-    public void setVoornaam(String voornaam) {
-        if (voornaam == null || voornaam.isEmpty()) {
-            throw new IllegalArgumentException("Voornaam is een verplicht veld");
-        }
-        this.voornaam = voornaam;
-    }
+//    public void setVoornaam(String voornaam) {
+//        if (voornaam == null || voornaam.isEmpty()) {
+//            throw new IllegalArgumentException("Voornaam is een verplicht veld");
+//        }
+//        this.Voornaam = voornaam;
+//    }
 
     public String getAchternaam() {
-        return achternaam;
+        return Achternaam;
     }
 
     public void setAchternaam(String achternaam) {
         if (achternaam == null || achternaam.isEmpty()) {
             throw new IllegalArgumentException("Achternaam is een verplicht veld");
         }
-        this.achternaam = achternaam;
+        this.Achternaam = achternaam;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        if (email == null || email.isEmpty()) {
-            throw new IllegalArgumentException("E-mailadres is een verplicht veld");
-        }
-        this.email = email;
-    }
+//    public void setEmail(String email) {
+//        if (email == null || email.isEmpty()) {
+//            throw new IllegalArgumentException("E-mailadres is een verplicht veld");
+//        }
+//        this.Email = email;
+//    }
 
     public KlantType getType() {
-        return type;
+        return Type;
     }
 
-    public void setType(KlantType type) {
-        if (type != KlantType.LEVERANCIER && type != KlantType.PARTICULIER) {
-            throw new IllegalArgumentException("Alleen LEVERANCIER of PARTICULIER zijn toegestaan als klanttype");
-        }
-        this.type = type;
-    }
+//    public void setType(KlantType type) {
+//        if (type != KlantType.LEVERANCIER && type != KlantType.PARTICULIER) {
+//            throw new IllegalArgumentException("Alleen LEVERANCIER of PARTICULIER zijn toegestaan als klanttype");
+//        }
+//        this.Type = type;
+//    }
 
     public Double getBtw() {
-        return btw;
+        return Btw;
     }
 
-    public void setBtw(Double btw) {
-        if (btw == null || btw < 0 || btw > 1) {
-            throw new IllegalArgumentException("BTW moet een waarde tussen 0 en 1 zijn (inclusief)");
-        }
-        this.btw = btw;
-    }
+//    public void setBtw(Double btw) {
+//        if (btw == null || btw < 0 || btw > 1) {
+//            throw new IllegalArgumentException("BTW moet een waarde tussen 0 en 1 zijn (inclusief)");
+//        }
+//        this.Btw = btw;
+//    }
 
     public LocalDate getAanmaakDatum() {
-        return aanmaakDatum;
+        return AanmaakDatum;
     }
 
     public void setAanmaakDatum(LocalDate aanmaakDatum) {
-        if (aanmaakDatum.isBefore(LocalDate.now())) {
-            this.aanmaakDatum = aanmaakDatum;
-        } else {
-            throw new IllegalArgumentException("Aanmaakdatum kan niet in de toekomst liggen");
-        }
+//        if (aanmaakDatum.isBefore(LocalDate.now())) {
+            this.AanmaakDatum = aanmaakDatum;
+//        } else {
+//            throw new IllegalArgumentException("Aanmaakdatum kan niet in de toekomst liggen");
+//        }
     }
 
     public Boolean getRedflag() {
-        return redflag;
+        return Redflag;
     }
 
-    public void setRedflag(Boolean redflag) {
-        this.redflag = redflag;
-    }
+//    public void setRedflag(Boolean redflag) {
+//        this.redflag = redflag;
+//    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Klant klant = (Klant) o;
-        return Objects.equals(id, klant.id);
+        return Objects.equals(Id, klant.Id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(Id);
     }
     @Override
     public int compareTo(Klant o) {
@@ -141,9 +142,9 @@ public class Klant implements Comparable<Klant>{
     @Override
     public String toString() {
         DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String formatAanmaakDatum = aanmaakDatum.format(fm);
-        return String.format("%-15s %-10s %-12s %-10s %3.2f%%\taanmaakdatum: %-12s Redflag: %-25s", voornaam, achternaam, email,
-                type, btw, formatAanmaakDatum, redflag);
+        String formatAanmaakDatum = AanmaakDatum.format(fm);
+        return String.format("%-15s %-10s %-12s %-10s %3.2f%%\taanmaakdatum: %-12s Redflag: %-25s", Voornaam, Achternaam, Email,
+                Type, Btw, formatAanmaakDatum, Redflag);
     }
 
 }
