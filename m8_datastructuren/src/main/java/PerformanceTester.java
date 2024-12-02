@@ -2,6 +2,11 @@ import kollections.Kollections;
 import kollections.lists.LinkedList;
 import kollections.lists.ArrayList;
 import kollections.lists.List;
+import kollections.maps.ListMap;
+import kollections.maps.HashMap;
+import kollections.maps.Map;
+import kollections.sets.ArraySet;
+import kollections.sets.TreeSet;
 import model.Klant;
 import model.KlantFactory;
 
@@ -71,5 +76,79 @@ public class PerformanceTester {
             long endTime = System.currentTimeMillis();
             System.out.println("Merge sort for n = " + n + ": " + (endTime - startTime) + " ms");
         }
+    }
+
+    //Opdracht 5.8
+
+    public static void compareListMapToHashMap(int mapSize) {
+        ListMap<Klant, String> listMap = new ListMap<>();
+        fillMap(listMap, mapSize);
+
+        long startTime = System.nanoTime();
+        for (int i = 0; i < mapSize; i++) {
+            Klant klant = KlantFactory.newEmptyKlant();
+            klant.setAchternaam("Klant" + i); // Gebruik achternaam als identificerend attribuut
+            listMap.get(klant);
+        }
+        long duration = System.nanoTime() - startTime;
+        int equalsCounterListMap = Klant.getEqualsCounter(); // Haal de equalsCounter op
+
+        System.out.printf("Listmap --> n: %d equalscounter:%d  nanosec: %d\n", mapSize, equalsCounterListMap, duration);
+
+        HashMap<Klant, String> hashMap = new HashMap<>();
+        fillMap(hashMap, mapSize);
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < mapSize; i++) {
+            Klant klant = KlantFactory.newEmptyKlant();
+            klant.setAchternaam("Klant" + i); // Gebruik achternaam als identificerend attribuut
+            hashMap.get(klant);
+        }
+        duration = System.nanoTime() - startTime;
+        int equalsCounterHashMap = Klant.getEqualsCounter() - equalsCounterListMap; // Bereken het verschil
+
+        System.out.printf("Hashmap --> n: %d equalscounter:%d  nanosec: %d\n", mapSize, equalsCounterHashMap, duration);
+    }
+
+    private static void fillMap(Map<Klant, String> map, int N) {
+        for (int i = 0; i < N; i++) {
+            Klant klant = KlantFactory.newEmptyKlant();
+            klant.setAchternaam("Klant" + i); // Gebruik achternaam als identificerend attribuut
+            map.put(klant, "Value voor Klant" + i);
+        }
+    }
+
+    //Opdracht 6.1
+
+    public static void compareArraySetToTreeSet(int setSize) {
+        ArraySet<Klant> arraySet = new ArraySet<>();
+
+        long startTimeA = System.nanoTime();
+        for (int i = 0; i < setSize; i++) {
+            arraySet.add(KlantFactory.newRandomKlant());
+        }
+        long durationA = System.nanoTime() - startTimeA;
+
+        int equalsCounterArraySet = Klant.getEqualsCounter();
+        int compareCountArraySet = Klant.getCounter();
+
+        System.out.printf("ArraySet --> n: %d equalscounter:%d  \n", setSize, equalsCounterArraySet);
+        System.out.printf("ArraySet --> n: %d comparecounter:%d  \n", setSize, compareCountArraySet);
+        System.out.printf("ArraySet --> n: %d nanosec: %d\n", setSize, durationA);
+
+        TreeSet<Klant> treeSet = new TreeSet<>();
+
+        long startTimet = System.nanoTime();
+        for (int i = 0; i < setSize; i++) {
+            treeSet.add(KlantFactory.newRandomKlant());
+        }
+        long durationt = System.nanoTime() - startTimet;
+
+        int equalsCounterTreeSet = Klant.getEqualsCounter() - equalsCounterArraySet;
+        int compareCountTreeSet = Klant.getCounter() - compareCountArraySet;
+
+        System.out.printf("TreeSet --> n: %d equalscounter:%d  \n", setSize, equalsCounterTreeSet);
+        System.out.printf("TreeSet --> n: %d comparecounter:%d  \n", setSize, compareCountTreeSet);
+        System.out.printf("TreeSet --> n: %d nanosec: %d\n", setSize, durationt);
     }
 }

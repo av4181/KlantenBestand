@@ -165,6 +165,11 @@ public class Demo_8 {
         System.out.println("Index van klant met naam " + klantTeZoeken.getAchternaam() + ": " + Kollections.lineairSearch(randomCustomListForQuickSort, nonExistent));
         System.out.println("Index van klant met naam " + klantTeZoeken.getAchternaam() + ": " + Kollections.binarySearch(randomCustomListForQuickSort, nonExistent));
 
+
+        //5.8  In de klasse PerformanceTester schrijf je een nieuwe methode compareListMapToHasMap:
+
+//        PerformanceTester.compareArraySetToTreeSet(1000);
+        PerformanceTester.compareListMapToHashMap(1000);
     }
 }
 

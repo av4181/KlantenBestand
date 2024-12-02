@@ -36,7 +36,18 @@ public class HashMap<K, V> implements Map<K, V> {
 
     @Override
     public void put(K key, V value) {
-        //TODO: werk uit
+        // Opdracht 5.6
+        int indexHash = hash(key);
+        if (buckets[indexHash] == null){
+            buckets[indexHash] = new Node<>(key, value);
+            size++;
+            return;
+        }
+
+        Node<K, V> newNode = new Node<>(key, value);
+        newNode.next = buckets[indexHash];
+        buckets[indexHash] = newNode;
+        size++;
 
     }
 
@@ -47,7 +58,17 @@ public class HashMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(K key) {
-        //TODO: werk uit
+        // Opdracht 5.6
+        int index = hash(key);
+        if (buckets[index] == null)
+            return null;
+
+        Node<K,V> node = buckets[index];
+        while (node != null){
+            if (node.key.equals(key))
+                return node.value;
+            node = node.next;
+        }
 
         return null;
     }

@@ -21,6 +21,10 @@ public class Klant implements Comparable<Klant>{
 
     private static final String UNKNOWN = "Unknown";
 
+    // Counters voor opdracht 5.8
+    private static int Counter;
+    private static int equalsCounter;
+
     // Opdracht 2.1
     Klant() {
         this(999999,UNKNOWN,UNKNOWN,UNKNOWN,KlantType.PARTICULIER,0.12, LocalDate.now(),true);
@@ -36,6 +40,14 @@ public class Klant implements Comparable<Klant>{
         Btw=btw;
         AanmaakDatum=aanmaakDatum;
         Redflag=redflag;
+    }
+
+    public static int getEqualsCounter() {
+        return equalsCounter;
+    }
+
+    public static int getCounter() {
+        return Counter;
     }
 
     public int getId() {
@@ -121,24 +133,26 @@ public class Klant implements Comparable<Klant>{
 //        this.redflag = redflag;
 //    }
 
+    //Opdracht 5.7
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Klant klant = (Klant) o;
-        return Objects.equals(Id, klant.Id);
+        return Objects.equals(Achternaam, klant.Achternaam); // Vergelijking op achternaam
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id);
+        return Objects.hash(Achternaam); // Hashcode gebaseerd op achternaam
     }
+
     @Override
     public int compareTo(Klant o) {
-        return Comparator.comparing(Klant::getAchternaam)
-                .thenComparing(Klant::getVoornaam)
-                .compare(this, o);
+
+        return this.Achternaam.compareTo(o.Achternaam); // Vergelijking op achternaam
     }
+
     @Override
     public String toString() {
         DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
