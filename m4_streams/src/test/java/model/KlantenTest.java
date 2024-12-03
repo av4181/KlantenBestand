@@ -61,7 +61,6 @@ class KlantenTest {
     }
 
     //2.2 e)
-    // TODO
     @Test
     void testSorterenOpNaam() {
         List<Klant> gesorteerdOpNaam = klanten.sortedBy(Klant::getAchternaam);

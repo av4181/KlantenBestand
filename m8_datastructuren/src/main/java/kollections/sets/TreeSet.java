@@ -28,8 +28,18 @@ public class TreeSet<T extends Comparable<T>> implements Set<T> {
     }
 
     private void add(TreeNode<T> parent, T value) {
-        //TODO verder uitwerken
-
+        // Verder uitwerken
+        if (value.compareTo(parent.value) < 0) {
+            if (parent.left == null) {
+                parent.left = new TreeNode<>(value);
+            } else add(parent.left, value);
+        } else if (value.compareTo(parent.value) > 0){
+            if (parent.right == null) {
+                parent.right = new TreeNode<>(value);
+            } else add(parent.right, value);
+        } else { //this is the case for a duplicate
+            System.out.println("you are adding a duplicate");
+        }
     }
 
     @Override
@@ -53,9 +63,20 @@ public class TreeSet<T extends Comparable<T>> implements Set<T> {
 
     @Override
     public boolean remove(T element) {
-        //TODO: implement remove
+        //Verder uitwerken
+        if (!contains(element)) {return false;}
+        else {
+            // Stap 1. nieuwe lijst creeren van bestaande elementen en desbetreffende element verwijderen van die lijst
+            List<T> list = this.toList();
+            list.remove(element);
+            // Stap 2. Treeset volledig leegmaken door root=null en voeg dan de elementen van de lijst toe
+            this.root = null;
+            for (int i = 0; i < list.size(); i++) {
+                this.add(list.get(i));
+            }
+            return true;
+        }
 
-        return false;
     }
 
     @Override
