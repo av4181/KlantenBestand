@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/m6_persistence" />
             <option value="$PROJECT_DIR$/m7_xml_json" />
             <option value="$PROJECT_DIR$/m8_datastructuren" />
+            <option value="$PROJECT_DIR$/m9_threads" />
           </set>
         </option>
       </GradleProjectSettings>
