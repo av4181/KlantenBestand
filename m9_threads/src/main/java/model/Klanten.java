@@ -1,15 +1,17 @@
 package model;
 
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * MULTIKLASSE
  */
 public class Klanten {
-    private TreeSet<Klant> klanten;
+    //Opdracht 4.4 treeset wordt een ArrayBlockingQueue
+    private ArrayBlockingQueue<Klant> klanten;
 
-    public Klanten() {
-        this.klanten = new TreeSet<>();
+    public Klanten(int capacity) {
+        this.klanten = new ArrayBlockingQueue<>(capacity);
     }
 
     public boolean voegToe(Klant klant) {
