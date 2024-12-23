@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="klantentabel" uuid="c6357c9a-7244-45ea-a9c5-ffa41925f8b1">
+    <data-source source="LOCAL" name="klantentabel" uuid="8a411a29-d0d6-413f-bf96-46cea605ecbe">
       <driver-ref>hsqldb.local</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
-      <jdbc-url>jdbc:hsqldb:file:;ifexists=true</jdbc-url>
+      <jdbc-url>jdbc:hsqldb:file:$PROJECT_DIR$/m10_dependency/db/klantentabel</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

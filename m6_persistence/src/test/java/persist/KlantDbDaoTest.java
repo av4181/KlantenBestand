@@ -24,7 +24,7 @@ class KlantDbDaoTest {
 
     @BeforeAll
     public static void firstOfAll() {
-        klantDbDao = new KlantDbDao("jdbc:hsqldb:file:C:/ANDREAS/BIBLIOTHEEK/groeiproject/m6_persistence/db/");
+        klantDbDao = new KlantDbDao("jdbc:hsqldb:file:C:\\ANDREAS\\BIBLIOTHEEK\\JAVA 2\\Java Programming 2\\Java2\\groeiproject\\m6_persistence\\db");
     }
 
     @BeforeEach
