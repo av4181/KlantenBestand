@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 // Opdracht 2.1
+// Dit is de klasse die Runnable interface implementeert
 public class KlantRunnable implements Runnable {
     private final Predicate<Klant> predicate;
     private List<Klant> klanten;

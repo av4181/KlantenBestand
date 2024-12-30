@@ -7,22 +7,25 @@ public class Demo_9 {
     private static final int TESTCOUNTER = 3;
 
     public static void main(String[] args) {
+        // Stap 1 maak instances van een Runnable klasse
         KlantRunnable runnableKlant1 = new KlantRunnable(f -> f.getAchternaam().startsWith("A"));
         KlantRunnable runnableKlant2 = new KlantRunnable(f -> f.getType() == KlantType.PARTICULIER);
         KlantRunnable runnableKlant3 = new KlantRunnable(f -> f.getBtw() < 0.21);
 
-// Opdracht 2.2
+        // Opdracht 2.2
         long[] times = new long[TESTCOUNTER];
+        // Creëer Thread objecten die een Runnable instance als constructor argument neemt
         for (int i = 0; i < TESTCOUNTER; i++) {
             Thread[] threads = new Thread[3];
             threads[0] = new Thread(runnableKlant1);
             threads[1] = new Thread(runnableKlant2);
             threads[2] = new Thread(runnableKlant3);
             long startTime = System.currentTimeMillis();
+            // Tot slot start de threads
             for (Thread value : threads) {
                 value.start();
             }
-
+            // Hier wacht de main thread to alle threads complete zijn
             for (Thread thread : threads) {
                 try {
                     thread.join();

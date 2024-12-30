@@ -16,6 +16,9 @@ public class ReflectionTools {
      * @param aClassArray Een variabel aantal klassen die geanalyseerd moeten worden.
      * De drie puntjes (...) geven aan dat deze methode een varargs parameter accepteert,
      * waardoor je nul, één of meerdere klassen als argument kunt meegeven.
+     *
+     * Alle methodes zijn static gemaakt.  ReflectionTools klasse is niet bedoeld om veelvuldig
+     *                    instanties van te maken.  Vandaar methode via static meteen beschikbaar maken
      */
     public static void classAnalysis(Class<?>... aClassArray) {
         for (Class<?> aClass : aClassArray) {

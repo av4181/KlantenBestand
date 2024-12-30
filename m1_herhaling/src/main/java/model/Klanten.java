@@ -6,6 +6,10 @@ import java.util.*;
  * MULTIKLASSE
  */
 public class Klanten {
+    /*
+    TreeSet bewaart de elementen in gesorteerde volgorde. Een TreeSet staat geen duplicaten toe.
+    Door de structuur van een treeset (boomstructuur) is de performantie minder goed dan een arraylist of hashset
+     */
     private TreeSet<Klant> klanten;
 
     public Klanten() {
@@ -34,6 +38,16 @@ public class Klanten {
         return null;
     }
 
+    //Sorteer functies kunnen eenvoudiger met Lambda functies
+    /*
+    public List<Klant> sorteerVoornaam(){
+        List<Klant> test = new ArrayList<>();
+        Collections.sort(test,(k1,k2)->k1.getVoornaam().compareTo(k2.getVoornaam()));
+        return test;
+    }
+     */
+
+    // Gebruikmaken van een Abstracte Comparator klasse
     public List<Klant> sorteerOpType() {
         List<Klant> klantType = new ArrayList<>(klanten);
         klantType.sort(new Comparator<Klant>() {

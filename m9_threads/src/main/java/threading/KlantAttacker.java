@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 // Opdracht 3.2
+// 2de klasse die de Runnable interface implementeert
 public class KlantAttacker implements Runnable {
     private final List<Klant> klantenLijst;
     // Geviseerde ijst van klanten objecten die wordt aangevallen

@@ -12,6 +12,11 @@ import java.util.*;
  */
 
 public class PriorityQueue<T> implements FIFOQueue<T> {
+    /**
+     * TreeMap om de elementen te kunnen sorteren op prioriteit. De sleutels van de TreeMap zijn de prioriteiten
+     * en de waarden zijn LinkedLists die de elementen met die prioriteit bevatten.
+     * Op prio 1 kan dus een lijstje staan met verschillende elementen
+     */
         private TreeMap<Integer, LinkedList<T>> linkedListTreeMap = new TreeMap<>(Comparator.reverseOrder());
 
     /**
@@ -26,6 +31,19 @@ public class PriorityQueue<T> implements FIFOQueue<T> {
      */
     @Override
     public boolean enqueue(T element, int priority) {
+        /**
+         * Deze for loop kan ook met streams
+         *
+         * boolean exists = linkedListTreeMap.values().stream()
+         *         .flatMap(Collection::stream)
+         *         .anyMatch(t -> t == element);
+         *
+         * if (exists) {
+         *     return false;
+         * }
+         *
+         * Maar dit is zeker niet korter of duidelijker wat de code doet
+         */
         for (LinkedList<T> value : linkedListTreeMap.values()) {
             for (T t : value) {
                 if (t == element) return false;
@@ -68,6 +86,14 @@ public class PriorityQueue<T> implements FIFOQueue<T> {
      */
     @Override
     public int search(T element) {
+        /**
+         * Kan ook met streams
+         * List<T> elements = linkedListTreeMap.values().stream()
+         *         .flatMap(Collection::stream)
+         *         .collect(Collectors.toList());
+         *
+         * return elements.contains(element) ? elements.indexOf(element) + 1 : -1;
+         */
         List<T> elements = new ArrayList<>();
         for (LinkedList<T> ts : linkedListTreeMap.values()) {
             elements.addAll(ts);
