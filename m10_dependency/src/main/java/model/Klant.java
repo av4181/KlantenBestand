@@ -110,11 +110,11 @@ public class Klant implements Comparable<Klant>, Serializable {
     }
 
     public void setAanmaakDatum(LocalDate aanmaakDatum) {
-        if (aanmaakDatum.isBefore(LocalDate.now())) {
+//        if (aanmaakDatum.isBefore(LocalDate.now())) {
             this.aanmaakDatum = aanmaakDatum;
-        } else {
-            throw new IllegalArgumentException("Aanmaakdatum kan niet in de toekomst liggen");
-        }
+//        } else {
+//            throw new IllegalArgumentException("Aanmaakdatum kan niet in de toekomst liggen");
+//        }
     }
 
     public Boolean getRedflag() {

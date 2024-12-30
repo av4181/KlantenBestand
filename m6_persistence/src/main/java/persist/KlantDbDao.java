@@ -66,8 +66,11 @@ public class KlantDbDao implements KlantDao {
     public boolean insert(Klant klant) {
         if (klant.getId() >= 0) return false; //klant heeft al PK dus bestaat al in database
         try  {
+            // voorbereiding van het SQL statement 'preparation'
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO klantentabel VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
+
+            // vul de prepared statement in op de juiste plaats met de juiste parameter
             preparedStatement.setString(1, klant.getVoornaam());
             preparedStatement.setString(2, klant.getAchternaam());
             preparedStatement.setDate(3, Date.valueOf(klant.getEmail()));
@@ -75,6 +78,8 @@ public class KlantDbDao implements KlantDao {
             preparedStatement.setDouble(5, klant.getBtw());
             preparedStatement.setInt(6, klant.getAanmaakDatum().getYear());
             preparedStatement.setBoolean(7, klant.getRedflag());
+
+            // voer de query uit en return true als er een rij werd toegevoegd
             int rowsAffected = preparedStatement.executeUpdate();
             boolean result = rowsAffected == 1;
             preparedStatement.close();

@@ -6,7 +6,7 @@ import persistence.UserDao;
 
 import java.util.logging.Logger;
 
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
     private static final Logger L = Logger.getLogger(UserServiceImpl.class.getName());
     private static final int MIN_PASSWORD_LENGTH = 3;
 
