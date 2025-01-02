@@ -1,5 +1,7 @@
 package persistence;
 
+import exceptions.KlantException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,8 +22,12 @@ public class DataSource {
         try {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.SEVERE, "HSQLDB driver niet gevonden: " + e.getMessage(), e);
+            throw new KlantException("HSQLDB driver niet gevonden", e);
+        } catch (SQLException e) {
             logger.log(Level.SEVERE, "Fout bij het maken van de database connectie: " + e.getMessage(), e);
+            throw new KlantException("Fout bij database connectie", e);
         }
     }
 
@@ -33,6 +39,9 @@ public class DataSource {
     }
 
     public Connection getConnection() {
+        if (connection == null) {
+            throw new KlantException("Database connectie is niet beschikbaar");
+        }
         return connection;
     }
 

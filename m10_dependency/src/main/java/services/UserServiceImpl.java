@@ -10,10 +10,10 @@ public class UserServiceImpl implements UserService {
     private static final Logger L = Logger.getLogger(UserServiceImpl.class.getName());
     private static final int MIN_PASSWORD_LENGTH = 3;
 
-    private UserDao userDAO;
+    private UserDao userDao;
 
     public UserServiceImpl(UserDao userDao) {
-        this.userDAO = userDAO;
+        this.userDao = userDao;
     }
 
     public void addUser(String name, String password) throws KlantException {
@@ -24,18 +24,18 @@ public class UserServiceImpl implements UserService {
             throw new KlantException("Password not strong enough");
         }
 
-        if (userDAO.getUserByName(name) != null) {
+        if (userDao.getUserByName(name) != null) {
             L.info("Username already in use!");
             throw new KlantException("Username already in use!");
         }
 
-        userDAO.addUser(new User(name, password));
+        userDao.addUser(new User(name, password));
     }
 
     public boolean login(String username, String password) throws KlantException {
         L.info("Trying to login user: " + username);
 
-        User user = userDAO.getUserByName(username);
+        User user = userDao.getUserByName(username);
 
         if (user == null) {
             return false;

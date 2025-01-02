@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Klant implements Comparable<Klant>{
 
-    private Long id;
+    private int id;
     private String voornaam;
     private String achternaam;
     private String email;
@@ -21,10 +21,10 @@ public class Klant implements Comparable<Klant>{
     private static final String UNKNOWN = "Unknown";
 
     public Klant() {
-        this(99999999L,UNKNOWN,UNKNOWN,UNKNOWN,KlantType.PARTICULIER,0.12, LocalDate.now(),true);
+        this(99999999,UNKNOWN,UNKNOWN,UNKNOWN,KlantType.PARTICULIER,0.12, LocalDate.now(),true);
     }
 
-    public Klant(Long id, String voornaam, String achternaam, String email, KlantType type, Double btw, LocalDate aanmaakDatum, Boolean redflag) {
+    public Klant(int id, String voornaam, String achternaam, String email, KlantType type, Double btw, LocalDate aanmaakDatum, Boolean redflag) {
         setId(id);
         setVoornaam(voornaam);
         setAchternaam(achternaam);
@@ -35,10 +35,10 @@ public class Klant implements Comparable<Klant>{
         setRedflag(redflag);
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getVoornaam() {

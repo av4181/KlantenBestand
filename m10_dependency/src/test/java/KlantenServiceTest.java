@@ -14,15 +14,15 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class KlantenServiceImplTest {
+class KlantenServiceTest {
 
     private KlantenService klantenService;
     private KlantDao klantDao;
 
     @BeforeEach
     void setUp() {
-        // remember Singleton patroon, HSQLKlantDao kan niet zo maar aangemaakt worden, enkel via getInstance()
-        KlantDao klantDao = HSQLKlantDao.getInstance("db/testklantendb");
+        // remember Singleton patroon, HSQLKlantDao kan niet zomaar aangemaakt worden, enkel via getInstance()
+        klantDao = HSQLKlantDao.getInstance();
         klantenService = new KlantenServiceImpl(klantDao);
     }
 

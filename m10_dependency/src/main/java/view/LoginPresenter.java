@@ -31,7 +31,7 @@ public class LoginPresenter {
             L.info("Button add clicked...");
             try {
                 userService.addUser(loginView.getTfUser().getText(), loginView.getPfPassword().getText());
-            } catch (KlantException e) { // Gebruik KlantException
+            } catch (KlantException e) {
                 new Alert(Alert.AlertType.ERROR,
                         "Er was een probleem bij het toevoegen van de gebruiker:\n" + e.getMessage()).showAndWait();
             }
@@ -43,7 +43,7 @@ public class LoginPresenter {
                 boolean result = userService.login(loginView.getTfUser().getText(), loginView.getPfPassword().getText());
                 L.info("Result of login: " + result);
                 if (result) {
-                    KlantDao klantDao = HSQLKlantDao.getInstance("db/klantentabel");
+                    KlantDao klantDao = HSQLKlantDao.getInstance();
                     KlantenService klantenService = new KlantenServiceImpl(klantDao);
                     KlantenView klantenView = new KlantenView();
                     new KlantenPresenter(klantenView, klantenService);

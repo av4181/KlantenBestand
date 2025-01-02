@@ -24,15 +24,15 @@ public class HSQLKlantDao implements KlantDao {
     private Connection connection;
 
     // Singleton patroon, klasse kan niet meerdere keren aangemaakt worden
-    private HSQLKlantDao(String databasePath) {
-        makeConnection(databasePath);
+    private HSQLKlantDao() {
+        connection = DataSource.getInstance().getConnection();
         createTable();
     }
 
     // getInstance methode voor het singleton Patroon
-    public static synchronized HSQLKlantDao getInstance(String databasePath) {
+    public static synchronized HSQLKlantDao getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new HSQLKlantDao(databasePath);
+            INSTANCE = new HSQLKlantDao();
         }
         return INSTANCE;
     }
@@ -62,7 +62,7 @@ public class HSQLKlantDao implements KlantDao {
     private void createTable() {
         try (Statement stmt = DataSource.getInstance().getConnection().createStatement()) {
             String sql = """                    
-                    CREATE TABLE IF NOT EXISTS klantentabel 
+                    CREATE TABLE IF NOT EXISTS klantentabel
                     (id INTEGER IDENTITY,
                     voornaam VARCHAR(50),
                     achternaam VARCHAR(50),
@@ -70,16 +70,22 @@ public class HSQLKlantDao implements KlantDao {
                     type VARCHAR(20),
                     btw DOUBLE,
                     aanmaakDatum DATE,
-                    redflag BOOLEAN) 
+                    redflag BOOLEAN)
                     """;
             stmt.executeUpdate(sql);
             // Controleer of de tabel leeg is en vul de tabel met data uit de Data klasse
             ResultSet rs = stmt.executeQuery("""
-                                                SELECT COUNT(*) FROM klantentabel
+                                                SELECT COUNT(*)
+                                                FROM klantentabel
                                                 """);
             rs.next();
             if (rs.getInt(1) == 0) {
-                Data.getData().forEach(this::insert);
+                System.out.println("Data: " + Data.getData());
+                Data.getData().forEach(klant -> {
+                    System.out.println("Invoegen klant: " + klant);
+                    boolean result = insert(klant);
+                    System.out.println("Resultaat: " + result);
+                });
                 logger.log(Level.INFO, "Tabel aangemaakt en gevuld met data.");
             }
         } catch (SQLException e) {
@@ -91,24 +97,23 @@ public class HSQLKlantDao implements KlantDao {
     // Opdracht 3.5 CRUD - Create
     @Override
     public boolean insert(Klant klant) {
-        if (klant.getId() >= 0) return false; //klant heeft al PK dus bestaat al in database
-        try {
-            PreparedStatement preparedStatement = DataSource.getInstance().getConnection().prepareStatement(
-                    "INSERT INTO klantentabel VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
+//        if (klant.getId() >= 0) return false; //klant heeft al PK dus bestaat al in database
+        try (PreparedStatement preparedStatement = DataSource.getInstance().getConnection().prepareStatement(
+                "INSERT INTO klantentabel VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, klant.getVoornaam());
             preparedStatement.setString(2, klant.getAchternaam());
-            preparedStatement.setDate(3, Date.valueOf(klant.getEmail()));
+            preparedStatement.setString(3, klant.getEmail());
             preparedStatement.setString(4, klant.getType().name());
             preparedStatement.setDouble(5, klant.getBtw());
-            preparedStatement.setInt(6, klant.getAanmaakDatum().getYear());
+            preparedStatement.setDate(6, Date.valueOf(klant.getAanmaakDatum()));
             preparedStatement.setBoolean(7, klant.getRedflag());
             int rowsAffected = preparedStatement.executeUpdate();
             boolean result = rowsAffected == 1;
-            preparedStatement.close();
+            logger.log(Level.INFO, "Klant succesvol toegevoegd.");
             return result;
 
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error when inserting: " + e.getMessage());
+            logger.log(Level.SEVERE, "Error bij toevoegen: " + e.getMessage());
             return false;
         }
     }
@@ -133,7 +138,7 @@ public class HSQLKlantDao implements KlantDao {
     public boolean update(Klant klant) {
         try {
             Statement statement = connection.createStatement();
-            int rowsaffected = statement.executeUpdate("UPDATE klantentabel set " +
+            int rowsaffected = statement.executeUpdate("UPDATE klantentabel SET " +
                     "voornaam = '" + klant.getVoornaam() + "'," +
                     "achternaam = '" + klant.getAchternaam() + "'," +
                     "email = '" + klant.getEmail() + "'," +
@@ -141,7 +146,7 @@ public class HSQLKlantDao implements KlantDao {
                     "btw = " + klant.getBtw() + "," +
                     "aanmaakdatum = '" + Date.valueOf(klant.getAanmaakDatum()) + "'," +
                     "redflag = " + klant.getRedflag() +
-                    " where id = " + klant.getId()
+                    " WHERE id = " + klant.getId()
             );
 
             Boolean res = rowsaffected == 1;
@@ -160,7 +165,7 @@ public class HSQLKlantDao implements KlantDao {
         Klant toRetrieveKlant = null;
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT  * FROM klantentabel where achternaam = '" + achternaam + "'");
+            ResultSet rs = statement.executeQuery("SELECT  * FROM klantentabel WHERE achternaam = '" + achternaam + "'");
             if (rs.next()) {
                 toRetrieveKlant = new Klant(
                         rs.getInt("id"),
@@ -209,23 +214,34 @@ public class HSQLKlantDao implements KlantDao {
 
     @Override
     public List<Klant> sortedOnAchternaam() {
-        return sortedOn("SELECT * FROM klantentabel ORDER BY achternaam ASC");
+        return sortedOn("""
+                SELECT *
+                FROM klantentabel
+                ORDER BY achternaam ASC
+                """);
     }
 
     @Override
     public List<Klant> sortedOnAanmaakDatum() {
-        return sortedOn("SELECT * FROM klantentabel ORDER BY aanmaakdatum ASC");
+        return sortedOn("""
+                SELECT *
+                FROM klantentabel
+                ORDER BY aanmaakdatum ASC
+                """);
     }
 
     @Override
     public List<Klant> sortedOnBtw() {
-        return sortedOn("SELECT * FROM klantentabel ORDER BY btw ASC");
+        return sortedOn("""
+                SELECT *
+                FROM klantentabel
+                ORDER BY btw ASC
+                """);
     }
 
     // Opdracht 2.1 Hergebruik SortedOn methode met een SELECT * query
     @Override
     public List<Klant> getAllKlanten() {
-        return sortedOn("SELECT * FROM klantentabel");
+        return sortedOn("id");
     }
-
 }
