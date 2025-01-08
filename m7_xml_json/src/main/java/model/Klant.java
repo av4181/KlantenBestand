@@ -86,6 +86,9 @@ public class Klant implements Comparable<Klant>{
         return type;
     }
 
+    /*
+    Annotations waarmee JAXB xml file kan parsen op zoek naar Klanttype elementen
+     */
     @XmlAttribute(name="klantType")
     public void setType(KlantType type) {
         if (type != KlantType.LEVERANCIER && type != KlantType.PARTICULIER) {

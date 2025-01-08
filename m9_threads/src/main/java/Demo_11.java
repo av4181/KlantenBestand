@@ -12,7 +12,9 @@ public class Demo_11 {
     private static final int TEST_COUNT = 100;
 
     public static void main(String[] args) throws Exception {
-        // 4.2 a) 3 callables maken
+        // 4.2 a) we maken streams via de call methode van KlantCallable (Klant instance) en met 3 predicates:
+        // het moeten particulieren zijn, btw > 0.12 en aangemaakt voor het jaar 2000
+        // 3 callables maken
         Predicate<Klant> gewichtPredicate = a -> a.getType() == KlantType.PARTICULIER;
         Predicate<Klant> disciplinePredicate = a -> a.getBtw() > 0.12;
         Predicate<Klant> lengtePredicate = a -> a.getAanmaakDatum().getYear() < 2000;

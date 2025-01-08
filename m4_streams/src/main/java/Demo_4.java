@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Demo_4 {
@@ -53,6 +54,18 @@ public class Demo_4 {
         System.out.println("\nKlanten gesorteerd op aanmaakdatum:");
         klanten.sortedBy(Klant::getAanmaakDatum).forEach(System.out::println);
         //Opdracht 2.4
+
+        /*
+        VANAF HIER GEBRUIK VAN FILTEREDLIST EN PREDICATES
+        PREDICATES WORDEN METEEN ALS LAMBDA INGEVOERD
+        KAN OOK TELKENS APART EEN PREDICATE VARIABELE MAKEN
+
+        Predicate<Klant> particulierenPred = klant -> klant.getType() == KlantType.PARTICULIER;
+        List<Klant> particuliereKlantn = KlantFunctions.filteredList(klantData, particulierenPred);
+
+         */
+
+
         // Filter klanten op klanttype PARTICULIER
         List<Klant> particuliereKlanten = KlantFunctions.filteredList(klantData, klant -> klant.getType() == KlantType.PARTICULIER);
         particuliereKlanten.forEach(System.out::println);
@@ -64,7 +77,9 @@ public class Demo_4 {
         List<Klant> recenteKlanten = KlantFunctions.filteredList(klantData, klant -> klant.getAanmaakDatum().isAfter(LocalDate.of(2000, 1, 1)));
         System.out.println("\n");
         recenteKlanten.forEach(System.out::println);
+
         //Opdracht 2.6
+        //GEBRUIK VAN EEN FUNCTIE ALS EEN ARGUMENT VAN EEN FUNCTIE
         // Bereken het gemiddelde BTW van alle klanten
         double gemiddeldeBtw = KlantFunctions.average(klantData, Klant::getBtw);
         System.out.printf("Gemiddelde BTW: %.2f\n", gemiddeldeBtw);
@@ -80,6 +95,7 @@ public class Demo_4 {
         System.out.printf("Aantal klanten met BTW 0.21: %d\n", aantalKlantenMetBtw021);
         //Streams
         System.out.println("\nStream oefeningen:");
+
         // 3.1 Tel hoeveel klanten zijn aangemaakt na 1 januari 2000
         long aantalNa2000 = klantData.stream()
                 .filter(klant -> klant.getAanmaakDatum().isAfter(LocalDate.of(2000, 1, 1)))

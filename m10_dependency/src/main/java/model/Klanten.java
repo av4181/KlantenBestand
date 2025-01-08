@@ -17,6 +17,11 @@ public class Klanten implements Serializable {
         this.klanten = new TreeSet<>();
     }
 
+    /*Thread safety : synchronized toevoegen  Arraylist of treeset is NIET-THREADSAFE Collection !!
+    public synchronized boolean voegToe(Klant klant) {
+        return klanten.add(klant);
+    }
+     */
     public boolean voegToe(Klant klant) {
         return klanten.add(klant);
     }

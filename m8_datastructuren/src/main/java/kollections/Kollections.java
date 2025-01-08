@@ -9,6 +9,9 @@ public class Kollections {
     private Kollections() {
     }
 
+    /*
+    Tijdscomplexiteit van O(n²), omdat het twee geneste loops gebruikt om de lijst te sorteren.
+     */
     public static <T extends Comparable<T>> void selectionSort(List<T> list) {
         //Opdracht 4.2: use the selectionSort from the introduction module and make it generic!
         for (int i = 0; i < list.size() - 1; i++) {
@@ -35,6 +38,10 @@ public class Kollections {
 
     //from inclusive, to inclusive
     // Opdracht 4.4: complete the algorithm! Use recursive calls and the merge method...
+    /*
+    Tijdscomplexiteit van O(n log n), omdat het de lijst recursief in tweeën splitst en vervolgens de gesorteerde
+    deellijsten samenvoegt.
+     */
     private static <T extends Comparable<T>> void mergeSort(List<T> list, int from, int to) {
         //splits in 2 delen, sorteer elk deel en merge dan
         if (from > to) throw new IllegalArgumentException("from should be before to");
@@ -72,6 +79,10 @@ public class Kollections {
         }
     }
 
+    /*
+    Quick sort heeft een gemiddelde tijdscomplexiteit van O(n log n), maar in het worst-case scenario
+    (wanneer de pivot steeds het kleinste of grootste element is) kan de tijdscomplexiteit oplopen tot O(n²)
+     */
     public static <T extends Comparable<T>> void quickSort(List<T> list) {
         quickSort(list, 0, list.size());
     }
@@ -100,6 +111,10 @@ public class Kollections {
         quickSort(list, i + 1, end);
     }
 
+    /*
+    Lineair zoeken heeft een tijdscomplexiteit van O(n), omdat het in het worst-case scenario de hele lijst tot list.size()
+    moet doorlopen om het element te vinden.
+     */
     public static <T> int lineairSearch(List<T> list, T element) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).equals(element)) return i;
@@ -107,6 +122,9 @@ public class Kollections {
         return -1;
     }
 
+    /*
+    Binair zoeken heeft een tijdscomplexiteit van O(log n), omdat het herhaaldelijk het zoekgebied halveert
+     */
     public static <T extends Comparable<T>> int binarySearch(List<T> sortedList, T element) {
         return binarySearch(sortedList, element, 0, sortedList.size());
     }

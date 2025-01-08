@@ -4,6 +4,11 @@ import kollections.Kollections;
 
 import java.util.Arrays;
 
+/*
+De basis van een ArrayList zijn arrays, dat betekent dus dat de grootte vastligt en dat deze immutable is.
+Bij toevoegen moet dus de grootte gecontroleerd worden en eventueel een expand gebeuren = een grotere kopie maken
+
+ */
 public class ArrayList<E> implements List<E> {
     private static final int INITIAL_CAPACITY = 10;
     private Object[] elements;
@@ -28,6 +33,11 @@ public class ArrayList<E> implements List<E> {
         elements = Arrays.copyOf(elements, 2*elements.length);
     }
 
+    /*
+    Het is een array dus als de array vol zit, moet er een expand gebeuren
+    Tijdscomplexiteit O(n): worst case moet minstens n/2 elementen opgeschoven worden en je moet ook een hele lijst
+    van n elementen kopiëren
+     */
     @Override
     public void add(int index, E element) {
         if (index > this.size || index < 0) {
@@ -44,12 +54,16 @@ public class ArrayList<E> implements List<E> {
         size++;
     }
 
+    /*
+    method overloading add()
+     */
     @Override
     public void add(E element) {
         add(size, element);
     }
 
     // Opdracht 5.4: Pas nu de List-implementaties ArrayList en LinkedList aan, werk alle ontbrekende methoden correct uit.
+    // Tijdscomplexiteit O (1) zeer snel !
     @Override
     public boolean remove(E element) {
         int index = Kollections.lineairSearch(this, element);
@@ -65,6 +79,7 @@ public class ArrayList<E> implements List<E> {
         return indexOf(element) != 1;
     }
 
+    // Tijdscomplexiteit O (1) zeer snel !
     @Override
     public void set(int index, E element) {
         if (index > this.size || index < 0) {
@@ -101,6 +116,7 @@ public class ArrayList<E> implements List<E> {
 
     @Override
     @SuppressWarnings("unchecked")
+    // Tijdscomplexiteit O (1) zeer snel !
     public E get(int index) {
         if (index >= this.size || index < 0) {
             throw new IndexOutOfBoundsException("index: " + index + ", size: " + size);

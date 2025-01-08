@@ -2,6 +2,10 @@ package kollections.lists;
 
 import kollections.Kollections;
 
+
+/*
+LinkedList is een ketting van elementen waarbij het ene element het adres van het volgende element bevat enz.
+ */
 public class LinkedList<E> implements List<E> {
     static class Node<V> {
         V value;
@@ -76,6 +80,9 @@ public class LinkedList<E> implements List<E> {
         return indexOf(element) != 1;
     }
 
+    /*
+    Worst case Tijdscomplexiteit O(n) slechter dan een ArrayList dus !
+     */
     @Override
     public E remove(int index) {
         if (index >= this.size || index < 0) {
@@ -98,6 +105,9 @@ public class LinkedList<E> implements List<E> {
         }
     }
 
+    /*
+    Worst case Tijdscomplexiteit O(n) slechter dan een ArrayList dus !
+     */
     @Override
     public E get(int index) {
         //Implementeer deze methode

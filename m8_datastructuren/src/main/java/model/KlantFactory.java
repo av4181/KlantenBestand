@@ -11,14 +11,17 @@ public class KlantFactory {
         // Opdracht 2.2 - Private constructor om te voorkomen dat nieuwe KlantFactory objecten instanties kunnen gemaakt worden
     }
 
+    // Static, constructor hoort bij de klasse niet bij de instanties
     public static Klant newEmptyKlant() {
         return new Klant();
     }
 
+    // STATIC METHOD, HOORT BIJ DE KLASSE NIET BIJ EEN INSTANTIE
     public static Klant newFilledKlant(int id, String voornaam, String achternaam, String email, KlantType type, double btw, LocalDate aanmaakDatum, boolean redflag) {
         return new Klant(id, voornaam, achternaam, email, type, btw, aanmaakDatum, redflag);
     }
 
+    // STATIC METHOD, HOORT BIJ DE KLASSE NIET BIJ EEN INSTANTIE
     public static Klant newRandomKlant() {
         Random random = new Random();
         int id = random.nextInt(1000);
@@ -32,6 +35,7 @@ public class KlantFactory {
         return new Klant(id, voornaam, achternaam, email, type, btw, aanmaakDatum, redflag);
     }
 
+    // STATIC METHOD, HOORT BIJ DE KLASSE NIET BIJ EEN INSTANTIE
     private static String generateString(int maxWordLength, int wordCount, boolean camelCase) {
         Random random = new Random();
         String vowels = "aeiou";

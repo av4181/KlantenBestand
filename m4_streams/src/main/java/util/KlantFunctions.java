@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class KlantFunctions {
     //Opdarcht 2.3
+    // Het predicate = waarop je wenst te filteren
+    // Deze kan in een later stadium nog gekozen worden als de functie gebruikt wordt
     public static <T> List<T> filteredList(List<T> klantList, Predicate<T> predicate) {
     //        List<T> gefilterdeLijst = new ArrayList<>();
     //        for (T klant : klantList){
